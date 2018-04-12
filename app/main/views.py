@@ -3,6 +3,7 @@ from . import main
 from ..requests import get_movies, get_movie, search_movie
 from .forms import ReviewForm
 from ..models import Review
+from flask_login import login_required
 
 # Views
 
@@ -70,3 +71,8 @@ def new_review(id):
 
     title = f'{movie.title} review'
     return render_template('new_review.html', title=title, review_form=form, movie=movie)
+
+
+@main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
+@login_required
+def new_review(id):
