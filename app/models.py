@@ -53,8 +53,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(255),index = True)
     email = db.Column(db.String(255),unique = True,index = True)
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    profile_pic_path = db.column(db.string())
-    bio = db.column(db.string(255))
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     password_hash = db.Column(db.String(255))
 
     @property
