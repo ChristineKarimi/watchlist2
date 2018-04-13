@@ -17,8 +17,6 @@ def create_app(config_name):
 
     app = Flask(__name__)
 
-    mail.init_app(app)
-
     # Creating the app configurations.
     app.config.from_object(config_options[config_name])
     #config_options(config_name).init_app(app)
@@ -34,8 +32,8 @@ def create_app(config_name):
     app.register_blueprint(main_blueprint)
 
     from .auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
-
+    app.register_blueprint(auth_blueprint,url_prefix='/authenticate')
+    mail.init_app(app)
     # setting conig
     from .requests import configure_request
     configure_request(app)
